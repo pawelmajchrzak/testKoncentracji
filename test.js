@@ -3,6 +3,8 @@ function stworzPlansze(poziom)
 	var rozmiar=parseInt(poziom);
 	var iloscKafelek = rozmiar*rozmiar;
 	var tresc_diva = "";
+	var szerokoscPolaGry=rozmiar*100;
+	$('#tablica').css('width',szerokoscPolaGry);
 	
 	for (i=0; i<iloscKafelek; i++)
 	{
@@ -15,6 +17,9 @@ function stworzPlansze(poziom)
 	//document.getElementById("tablica").innerHTML = "Hej";
 	
 	$('#tablica').html(tresc_diva);
+	
+	
+
 	
 	
 }
