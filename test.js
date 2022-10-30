@@ -65,9 +65,24 @@ function stworzPlansze(poziom)
 	
 }
 
+function sprawdz(nr)
+{
+	
+	
+	
+}
+
 
 function zakryjKafelek(nr)
 { 
-	//alert('nr');
-	$(nr).css('background-color','#888888');
+	$(nr).css('background-color','#cfcecc');
+	$(nr).css('border','3px solid #cfcecc');
+	$(nr).html('');
+	//$(nr).css('color','#cfcecc');
+	$(nr).css('cursor','default');
+	$(nr).css('background-color','#cfcecc');
+
+	document.getElementById(nr).setAttribute("onclick",";");
+	
+	
 }

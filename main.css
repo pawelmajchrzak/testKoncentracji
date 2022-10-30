@@ -70,14 +70,14 @@ p
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
-	background-color: #AAAAAA;
 	min-height:300px;
+	font-size: 20px;
 }
 
 .kafelka
 {
 	width: 78px;
-	
+	height: 47px;
 	text-align: center;
 	padding: 5px 3px;
 	font-size: 42px;
