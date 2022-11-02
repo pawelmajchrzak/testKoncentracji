@@ -10,7 +10,6 @@ function stworzPlansze(poziom)
 	$('#tablica').css('width',szerokoscPolaGry);
 
 
-//var liczby = new Array(iloscKafelek);
 	liczby = [];
     do
     {
@@ -32,11 +31,6 @@ function stworzPlansze(poziom)
 	while (liczby[iloscKafelek-1]==iloscKafelek-1);
 	
 	for (i=0; i<iloscKafelek; i++) liczby[i]++;
-
-
-
-
-
 	
 	for (i=0; i<iloscKafelek; i++)
 	{
@@ -45,67 +39,39 @@ function stworzPlansze(poziom)
 		if ((i+1) % rozmiar == 0) tresc_diva = tresc_diva + '<div style = "clear: both;"></div>';
 	}
 	
-	
-	
-	//var kafNr0 = document.getElementById('kafNr0');
-	//kafNr0.addEventListener("click", function() { zakryjKafelek(0); });
-	
-	//document.getElementById("tablica").innerHTML = "Hej";
-	
 	$('#tablica').html(tresc_diva);
-	//$('#kafNr2').css('background-color','#888888');
-	//test
-	//var testuje = 'liczby[0]';
-	//$('#panelGry').html(testuje);
-	
-	
-	
-
-	
-	
+	var ileSek = 10;
+	odliczanie(ileSek);
 }
 
 function sprawdz(nr,iloscKafelek)
 {	
-	
-	//alert(liczby[iloscKafelek-1]);
 	if (liczby[nr]==1)
 	{
-		liczby[nr]=100;
-		zakryjKafelek(nr);
-		
-		//alert(liczby[nr]);
+		zakryjKafelek(nr,iloscKafelek);
 	}
-	
-	if (liczby[nr]!=1)
+	else
 	{
-
 		var flaga = true;
 		
-		for (i=0; i<25; i++)
+		for (i=0; i<iloscKafelek; i++)
 		{
-			//alert(liczby[i]);
-			if (liczby[i]<liczby[nr]) {
+			if (liczby[i]<liczby[nr])
+			{
 				flaga = false;
-				//alert(liczby[i]);
 			}
 		}
 		
 		if (flaga == true) 
 		{
-			liczby[nr]=100;
-			zakryjKafelek(nr);
+
+			zakryjKafelek(nr,iloscKafelek);
 		}
-			
-		
-	//alert(flaga);
 	}
-	
-	
 }
 
 
-function zakryjKafelek(nr)
+function zakryjKafelek(nr,iloscKafelek)
 { 
 	$('#kafNr'+nr).css('background-color','#cfcecc');
 	$('#kafNr'+nr).css('border','3px solid #cfcecc');
@@ -113,8 +79,28 @@ function zakryjKafelek(nr)
 	$('#kafNr'+nr).css('cursor','default');
 	$('#kafNr'+nr).css('background-color','#cfcecc');
 
+	if (liczby[nr]==iloscKafelek)
+	{
+		$('#tablica').css('font-size','40px');
+		$('#tablica').html('<br /><b>Udało Ci się! Wygrałeś!</b><br /><br /><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>');
+	}
+	liczby[nr]=100;
 	document.getElementById(nr).setAttribute("onclick",";");
+}
+
+function odliczanie(ileSek)
+{
+
+           document.getElementById("panelGry").innerHTML = ileSek;
+		   ileSek = ileSek-1;
+
+            if(liczba<0) ileSek = 10;
+            setTimeout("odliczanie(ileSek)",1000);
+        
+
 	
+
 	
-	
+
+
 }

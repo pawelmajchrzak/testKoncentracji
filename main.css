@@ -95,3 +95,15 @@ p
 	background-color: white;
 	border: 3px solid #000000;
 }
+
+.reset
+{
+	color: green;
+	cursor: pointer;
+	font-size: 48px;
+}
+
+.reset:hover
+{
+	font-weight: bold;
+}
