@@ -41,7 +41,7 @@ function stworzPlansze(poziom)
 	for (i=0; i<iloscKafelek; i++)
 	{
 		var nrkafelki = "kafNr"+i;
-		tresc_diva = tresc_diva + '<div class="kafelka" id="' + nrkafelki + '" onclick="zakryjKafelek('+nrkafelki+')">' +liczby[i]+ '</div>'; 
+		tresc_diva = tresc_diva + '<div class="kafelka" id="' + nrkafelki + '" onclick="sprawdz('+i+','+iloscKafelek+')">' +liczby[i]+ '</div>'; 
 		if ((i+1) % rozmiar == 0) tresc_diva = tresc_diva + '<div style = "clear: both;"></div>';
 	}
 	
@@ -65,9 +65,41 @@ function stworzPlansze(poziom)
 	
 }
 
-function sprawdz(nr)
-{
+function sprawdz(nr,iloscKafelek)
+{	
 	
+	//alert(liczby[iloscKafelek-1]);
+	if (liczby[nr]==1)
+	{
+		liczby[nr]=100;
+		zakryjKafelek(nr);
+		
+		//alert(liczby[nr]);
+	}
+	
+	if (liczby[nr]!=1)
+	{
+
+		var flaga = true;
+		
+		for (i=0; i<25; i++)
+		{
+			//alert(liczby[i]);
+			if (liczby[i]<liczby[nr]) {
+				flaga = false;
+				//alert(liczby[i]);
+			}
+		}
+		
+		if (flaga == true) 
+		{
+			liczby[nr]=100;
+			zakryjKafelek(nr);
+		}
+			
+		
+	//alert(flaga);
+	}
 	
 	
 }
@@ -75,14 +107,14 @@ function sprawdz(nr)
 
 function zakryjKafelek(nr)
 { 
-	$(nr).css('background-color','#cfcecc');
-	$(nr).css('border','3px solid #cfcecc');
-	$(nr).html('');
-	//$(nr).css('color','#cfcecc');
-	$(nr).css('cursor','default');
-	$(nr).css('background-color','#cfcecc');
+	$('#kafNr'+nr).css('background-color','#cfcecc');
+	$('#kafNr'+nr).css('border','3px solid #cfcecc');
+	$('#kafNr'+nr).html('');
+	$('#kafNr'+nr).css('cursor','default');
+	$('#kafNr'+nr).css('background-color','#cfcecc');
 
 	document.getElementById(nr).setAttribute("onclick",";");
+	
 	
 	
 }
