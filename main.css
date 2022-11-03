@@ -21,6 +21,7 @@ h1
 	margin-bottom: 0px;
 }
 
+
 p
 {
 	text-align: center;
@@ -30,6 +31,18 @@ p
 }
 
 #panelGry
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width:  746px;
+	padding: 10px;
+	padding-bottom: 15px;
+
+
+}
+
+#test
 {
 	margin-left: auto;
 	margin-right: auto;
