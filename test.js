@@ -1,48 +1,31 @@
 const ONE_SECOND = 1000;
 
-class Clock {
+class Zegar {
     constructor() {
-        this.clock = null; // interval
+        this.zegar = null; // interval
         this.currentTime = 0;
         this.limitTime = 0;
-        this.$clock = document.querySelector('#panelGry');
+        this.$zegar = document.querySelector('#panelGry');
     }
 
-    start(time) {
-        console.log('start', time);
-        this.limitTime = time;
+    start() {
         this.render();
-        this.clock = setInterval(() => {
+        this.zegar = setInterval(() => {
             this.currentTime += ONE_SECOND;
             this.render();
-
-            if (this.isStopped()) {
-                this.stop();
-            }
         }, ONE_SECOND);
-    }
-
-    isStopped() {
-        return (this.limitTime + this.currentTime) == 300000;
     }
 
     render() {
         let diff = this.limitTime + this.currentTime;
-        console.log('render', diff);
-        this.$clock.textContent = Clock.formatTime(diff);
+        this.$zegar.textContent = Zegar.formatCzasu(diff);
     }
 
     stop() {
-        console.log('stop');
-        clearInterval(this.clock);
+        clearInterval(this.zegar);
         }
 
-    static parseSeconds(formattedTime) {
-        let [minutes, seconds] = formattedTime.split(':').map(Number);
-        return (minutes * 60 * ONE_SECOND) + seconds * ONE_SECOND;
-    }
-
-    static formatTime(time) {
+    static formatCzasu(time) {
         let minutes = Math.floor(time / ONE_SECOND / 60);
         let seconds = time / ONE_SECOND % 60;
         minutes = String(minutes).padStart(2, '0');
@@ -59,7 +42,6 @@ function stworzPlansze(poziom)
 	var tresc_diva = "";
 	var szerokoscPolaGry=rozmiar*100;
 	$('#tablica').css('width',szerokoscPolaGry);
-
 
 	liczby = [];
     do
@@ -83,9 +65,8 @@ function stworzPlansze(poziom)
 	
 	for (i=0; i<iloscKafelek; i++) liczby[i]++;
 	
-	let clock = new Clock();
-    let time = Clock.parseSeconds('00:00');
-    clock.start(time);
+	let zegar = new Zegar();
+    zegar.start();
 
 	for (i=0; i<iloscKafelek; i++)
 	{
@@ -127,11 +108,11 @@ function sprawdz(nr,iloscKafelek)
 
 function zakryjKafelek(nr,iloscKafelek)
 { 
-	$('#kafNr'+nr).css('background-color','#cfcecc');
-	$('#kafNr'+nr).css('border','3px solid #cfcecc');
+	$('#kafNr'+nr).css('background-color','#dad4cd');
+	$('#kafNr'+nr).css('border','3px solid #dad4cd');
 	$('#kafNr'+nr).html('');
 	$('#kafNr'+nr).css('cursor','default');
-	$('#kafNr'+nr).css('background-color','#cfcecc');
+	$('#kafNr'+nr).css('background-color','#dad4cd');
 
 	if (liczby[nr]==iloscKafelek)
 	{
@@ -142,17 +123,7 @@ function zakryjKafelek(nr,iloscKafelek)
 		var element = document.getElementById('panelGry');
 		var zawartosc = 'Twój czas to:  '+element.textContent;
 		$('#test').html(zawartosc);
-		
-		Clock.stop();
 	}
 	liczby[nr]=100;
 	document.getElementById(nr).setAttribute("onclick",";");
 }
-
-
-
-function setup() {
-
-}
-
-//window.onload = setup;
